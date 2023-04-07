@@ -1,0 +1,23 @@
+apiVersion: v1
+entries:
+  cws:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-04-07T10:33:44.485277272Z"
+    description: helm chart for cws
+    digest: 78cb59f12505a62d62ba5c830d1729e3fa81e69bc3e53104afbd8f27266cab2a
+    icon: https://globallyunited.com/favicon.svg
+    keywords:
+    - web3
+    - custodial
+    - nestjs
+    maintainers:
+    - email: arandjel.sarenac@mvpworkshop.co
+      name: ArandjelSarenac
+      url: https://github.com/big-kahuna-burger
+    name: cws
+    type: application
+    urls:
+    - https://github.com/MVPWorkshop/gu-charts/releases/download/cws-0.1.1/cws-0.1.1.tgz
+    version: 0.1.1
+generated: "2023-04-07T10:33:44.485284572Z"
