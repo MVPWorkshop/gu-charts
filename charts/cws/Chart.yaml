@@ -1,5 +1,5 @@
 apiVersion: v2
-name: nestjs
+name: cws
 description: helm chart for cws
 icon: "https://globallyunited.com/favicon.svg"
 type: application
