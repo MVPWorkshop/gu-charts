@@ -1,0 +1,15 @@
+apiVersion: v2
+name: nestjs
+description: helm chart for cws
+icon: "https://globallyunited.com/favicon.svg"
+type: application
+version: 0.1.0
+appVersion: "0.0.1"
+maintainers:
+  - name: ArandjelSarenac
+    url: https://github.com/big-kahuna-burger
+    email: arandjel.sarenac@mvpworkshop.co
+keywords:
+  - web3
+  - custodial
+  - nestjs
