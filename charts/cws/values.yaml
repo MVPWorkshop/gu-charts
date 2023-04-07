@@ -1,0 +1,145 @@
+# -- Override for resource names 
+nameOverride: ""
+# -- Override for the full resource. (`"nodeapp.fullname"`)
+fullnameOverride: ""
+# -- Override the Kubernetes version
+kubeVersionOverride: ""
+
+# -- Additional Ingress
+apiVersionOverrides:
+  # -- Override the ingress API version
+  ingress: "" # networking.k8s.io/v1beta1
+
+# -- The number of pod replicas
+replicaCount: 1
+
+global:
+  image:
+    # -- Container image repository
+    repository: backend
+    # -- Container pull policy
+    pullPolicy: IfNotPresent
+    # -- Container image tag. The default is the chart appVersion.
+    tag: ""
+
+  # -- CORS origin 
+  cors_origin: "*"
+  
+  # -- Override for the full resource. (`"nodeapp.fullname"`)
+  imagePullSecrets: []
+  # -- PostgreSQL subchart
+  postgresql:
+    auth:
+      # -- PostgreSQL username
+      username: backend
+      # -- PostgreSQL password
+      password: backend
+      # -- PostgreSQL database name
+      database: backend
+    service:
+      ports:
+        # -- # -- PostgreSQL port
+        postgresql: 5432
+
+  # -- Additional pod annotations
+  podAnnotations: {}
+  # -- Additional pod security context
+  podSecurityContext: {}
+  # -- Security context
+  securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+  # fsGroup: 2000
+
+# -- Service account
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: true
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+service:
+  # -- Service type
+  type: ClusterIP
+  # -- Service port
+  port: 4000
+  # -- Service port name
+  namedPort: backend
+
+ingress:
+  # -- Enable ingress
+  enabled: false
+  annotations: {}
+  lables : {}
+  ingressClassName: ""
+  hosts: []
+  pathType: Prefix
+  paths: 
+    - /
+  extraPaths: []
+  tls: []
+
+# -- Pod resources
+resources: {}
+
+# -- Autoscaling
+autoscaling:
+  # -- Enable autoscaling
+  enabled: false
+  # -- Minimum replicas
+  minReplicas: 1
+  # -- Maximum replicas
+  maxReplicas: 100
+  # -- CPU utilisation which will trigger autoscailing
+  targetCPUUtilizationPercentage: 80
+  # -- RAM utilisation which will trigger autoscailing
+  targetMemoryUtilizationPercentage: 80
+
+# -- Node selector
+nodeSelector: {}
+# -- Tolerations
+tolerations: []
+# -- Affinity
+affinity: {}
+
+# -- Backend application config
+backend:
+  config:
+    name: backend
+  secrets: {}
+  volumes: {}
+  volumeMounts: {}
+  # -- Liveness probe
+  livenessProbe:
+    httpGet:
+      path: /health
+    # -- Number of seconds after the container has started before [probe] is initiated
+    initialDelaySeconds: 10
+    # -- How often (in seconds) to perform the [probe]
+    periodSeconds: 10
+    # -- Number of seconds after which the [probe] times out
+    timeoutSeconds: 1
+    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
+    successThreshold: 1
+    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
+    failureThreshold: 3
+  # -- Readiness probe
+  readinessProbe:
+    httpGet:
+      path: /health
+    # -- Number of seconds after the container has started before [probe] is initiated
+    initialDelaySeconds: 10
+    # -- How often (in seconds) to perform the [probe]
+    periodSeconds: 10
+    # -- Number of seconds after which the [probe] times out
+    timeoutSeconds: 1
+    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
+    successThreshold: 1
+    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
+    failureThreshold: 3
